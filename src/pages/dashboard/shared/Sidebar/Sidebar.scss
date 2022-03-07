@@ -1,0 +1,39 @@
+@import '../../../../assets/sass/global-imports';
+
+.sidebar__container {
+    @include flex-col;
+    background-color: #001529;
+    color: white;
+    width: 240px;
+    height: 100%;
+    padding: 10px;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+}
+
+.sidebar-menu__container {
+    @include flex-col;
+    background-color: #001529;
+
+    li {
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+
+        &:visited {
+            color: white;
+        }
+
+        .link {
+            color: white !important;
+            &:visited {
+                color: white;
+            }
+
+            &:hover {
+                color: red;
+            }
+        }
+    }
+
+}
