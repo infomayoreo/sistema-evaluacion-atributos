@@ -1,8 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { useForm } from "../../hooks";
 import { startLoginEmailPassword } from "../../redux/actions";
-
+import {loginGoogle}  from "../../redux/actions";
+import GoogleLogin from 'react-google-login';
 export const LoginScreen = ({ title }: any): JSX.Element => {
+
+	const handleGoogleLogin = (response: any) => {
+		dispatch( loginGoogle(response));
+	}
 
 	const dispatch = useDispatch();
 	    
@@ -45,6 +50,13 @@ export const LoginScreen = ({ title }: any): JSX.Element => {
 				<button type="submit">Login</button>
 
 			</form>
+			<GoogleLogin
+    clientId="727616130057-5d80d13l0pl7j3rdrf6hc51796i6auqb.apps.googleusercontent.com"
+    buttonText="Login With Google"
+    onSuccess={handleGoogleLogin}
+    onFailure={handleGoogleLogin}
+    cookiePolicy={'single_host_origin'}
+  />,
 
 		</div>
 	)

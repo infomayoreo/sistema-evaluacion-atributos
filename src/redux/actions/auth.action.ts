@@ -1,3 +1,4 @@
+import { responseEncoding } from 'axios';
 import { ThunkDispatch } from 'redux-thunk';
 import { ReduxAction, User } from '../../interfaces';
 import { types } from '../types';
@@ -78,4 +79,36 @@ const getAuthStateAction = (user: User): ReduxAction => ({
     type: types.authGetState,
     payload: user
 });
+
+export const loginGoogle = (response: any) => {
+    return (dispatch: ThunkDispatch<{}, {}, ReduxAction>) => {
+
+        console.log("el google id es: ", response.tokenId)  
+
+        let cabeceras = new Headers();
+		cabeceras.append("google-id-token", response.tokenId)
+	    fetch("https://sistema-evaluacion-atributos.herokuapp.com/api/v1/google-login", {
+		method: "POST",
+		headers: cabeceras,
+		redirect: "follow",
+	})
+    .then(datos => datos.json())
+    .then(data => console.log(data))
+
+
+    
+
+   
+  	// .catch(error => console.log('error', error));
+
+
+
+    } 
+
+
+    }
+  
+
+    
+
 
