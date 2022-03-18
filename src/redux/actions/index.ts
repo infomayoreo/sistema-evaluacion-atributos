@@ -1,7 +1,7 @@
-import { startLoginEmailPassword, startLogout, loginGoogle } from "./auth.action";
+import { startLoginEmailPassword, startLogout, startLoginGoogle } from "./auth.action";
 
 export {
     startLoginEmailPassword,
     startLogout,
-    loginGoogle
+    startLoginGoogle
 };

@@ -2,7 +2,7 @@ import { ReduxAction } from '../../interfaces';
 import { User } from '../../interfaces/user';
 import { types } from '../types';
 
-export const authReducer = ( state = {}, action: ReduxAction ): User | {} => {
+export const authReducer = ( state={}, action: ReduxAction ): User | {} => {
 
     switch ( action.type ) {
         case types.authLogin:

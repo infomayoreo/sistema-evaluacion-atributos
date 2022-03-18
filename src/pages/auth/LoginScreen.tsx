@@ -1,16 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { useForm } from "../../hooks";
 import { startLoginEmailPassword } from "../../redux/actions";
-import {loginGoogle}  from "../../redux/actions";
+import {startLoginGoogle}  from "../../redux/actions";
 import GoogleLogin from 'react-google-login';
 export const LoginScreen = ({ title }: any): JSX.Element => {
 
-	const handleGoogleLogin = (response: any) => {
-		dispatch( loginGoogle(response));
-	}
-
+	
 	const dispatch = useDispatch();
-	    
+	
+	const handleGoogleLogin = (response: any) => {
+		dispatch(startLoginGoogle(response));
+	}
     const [ formValues, handleInputChange ] = useForm({
         email: '',
         password: '',

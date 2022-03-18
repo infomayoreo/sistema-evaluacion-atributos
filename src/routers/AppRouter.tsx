@@ -9,6 +9,10 @@ import { PublicRoutes } from './PublicRoutes';
 import { MainLayout } from '../pages/dashboard/MainLayout';
 import { LoginScreen } from '../pages';
 import { useSelector } from 'react-redux';
+import Index from '../components/Index';
+import Reuniones from '../components/Reuniones';
+import Reportes from '../components/Reportes';
+import Admin from '../components/Admin';
 
 
 export const AppRouter = (): JSX.Element => {
@@ -27,6 +31,7 @@ export const AppRouter = (): JSX.Element => {
 		} else {
 			setIsLoggedIn( false );
 		}
+
 		setChecking(false);
 	}, [uid]);
 
@@ -51,10 +56,10 @@ export const AppRouter = (): JSX.Element => {
 
 					<Route element={ <PrivateRoutes isLoggedIn={ isLoggedIn } /> }>
 						<Route element={ <MainLayout /> }>
-							<Route index element={ <h1>index</h1> } />
-							<Route path='admin' element={ <h1>Admin</h1> } />
-							<Route path='reuniones' element={ <h1>reuniones</h1> } />
-							<Route path='reportes' element={ <h1>reportes</h1> } />
+							<Route index element={ <Index/> } />
+							<Route path='admin' element={ <Admin/> } />
+							<Route path='reuniones' element={ <Reuniones/> } />
+							<Route path='reportes' element={ <Reportes/> } />
 							<Route path='*' element={ <Navigate replace to="/" /> } />
 						</Route>
 					</Route>
