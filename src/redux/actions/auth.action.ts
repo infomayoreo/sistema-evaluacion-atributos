@@ -81,17 +81,18 @@ const getAuthStateAction = (user: User): ReduxAction => ({
 });
 
 export const startLoginGoogle = (response: any) => {
+    // const API = "127.0.0.1:3001/api/v1/google-login";
     return (dispatch: ThunkDispatch<{}, {}, ReduxAction>) => { 
         console.log(response)
         let cabeceras = new Headers();
 		cabeceras.append("google-id-token", response.tokenId)
-	    fetch("https://sistema-evaluacion-atributos.herokuapp.com/api/v1/google-login", {
+	    fetch("http://localhost:3001/api/v1/google-login", {
 		method: "POST",
 		headers: cabeceras,
 		redirect: "follow",
 	})
     .then(datos => datos.json())
-    .then(data => console.log(data.data))
+    .then(data => console.log(data ))
      .catch(error => console.log('error', error));
 
 
