@@ -39,23 +39,24 @@ import {
 
 export const AppRouter = (): JSX.Element => {
 
-	const { uid } = useSelector( (state: any) => state.auth );
+	const {googleToken} = useSelector( (state: any) => state.auth );
 
 	// checking avoid the redirect of the page when refresh manually the page
 	// or type the url directly
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [checking, setChecking] = useState(true);
-
+	
 	useEffect(() => {
+		console.log(googleToken)
 		console.log('useEffect');
-		if (uid) {
+		if (googleToken) {
 			setIsLoggedIn( true );
 		} else {
 			setIsLoggedIn( false );
 		}
 
 		setChecking(false);
-	}, [uid]);
+	}, [googleToken]);
 
 	console.log({isLoggedIn, checking})
 

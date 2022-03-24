@@ -3,6 +3,7 @@ import { useForm } from "../../../hooks";
 import { startLoginEmailPassword } from "../../../redux/actions";
 import {startLoginGoogle}  from "../../../redux/actions";
 import GoogleLogin from 'react-google-login';
+import { GoogleLoginButton } from '../GoogleLoginButton';
 
 export const LoginPage = ({ title }: any): JSX.Element => {
 
@@ -51,13 +52,14 @@ export const LoginPage = ({ title }: any): JSX.Element => {
 				<button type="submit">Login</button>
 
 			</form>
-			<GoogleLogin
+			{/* <GoogleLogin
     clientId="727616130057-5d80d13l0pl7j3rdrf6hc51796i6auqb.apps.googleusercontent.com"
     buttonText="Login With Google"
     onSuccess={handleGoogleLogin}
     onFailure={handleGoogleLogin}
     cookiePolicy={'single_host_origin'}
-  />,
+  /> */}
+  <GoogleLoginButton/>
 
 		</div>
 	)
