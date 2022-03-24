@@ -11,6 +11,10 @@ export const authReducer = ( state={}, action: ReduxAction ): User | {} => {
                 displayName: action.payload.displayName,
                 email: action.payload.email,
             };
+        case types.authLoginGoogle:
+            return {
+                googleToken: action.payload
+            };
 
         case types.authLogout:
             return {};

@@ -70,6 +70,10 @@ const loginAction = (user: User): ReduxAction => ({
     type: types.authLogin,
     payload: user
 });
+const loginActionGoogle = (token: string ): ReduxAction => ({
+    type: types.authLoginGoogle,
+    payload: token
+});
 
 const logoutAction = (): ReduxAction => ({
     type: types.authLogout
@@ -80,21 +84,42 @@ const getAuthStateAction = (user: User): ReduxAction => ({
     payload: user
 });
 
-export const startLoginGoogle = (response: any) => {
+export const startLoginGoogle =  (response: any) => {
     // const API = "127.0.0.1:3001/api/v1/google-login";
-    return (dispatch: ThunkDispatch<{}, {}, ReduxAction>) => { 
-        console.log(response)
+    return async(dispatch: ThunkDispatch<{}, {}, ReduxAction>) => { 
+        // console.log(response)
         let cabeceras = new Headers();
-		cabeceras.append("google-id-token", response.tokenId)
-	    fetch("http://localhost:3001/api/v1/google-login", {
+		cabeceras.append("google-id-token", response.credential)
+	    const sendToken = await fetch("http://localhost:3001/api/v1/google-login", {
 		method: "POST",
 		headers: cabeceras,
 		redirect: "follow",
-	})
-    .then(datos => datos.json())
-    .then(data => console.log(data ))
-     .catch(error => console.log('error', error));
+	                        })
+    const datos = await sendToken.json();
+    console.log(datos)
+    const status = datos.appStatusCode
+    const token = datos.data.token
+    console.log(token)
+    
+    if(status != 0) {
+        console.log("Error de validacion")
+        return;
+    }
+    let userTemp: User;
+    const user = {
+        uid: 'soy_uid',
+        name: 'soy_displayName',
+        email: 'soy_email',
+    }
+    // console.log(user);
 
+     userTemp = {
+        uid: user.uid,
+        displayName: user.name,
+        email: user.email,
+    }
+    
+    dispatch(loginActionGoogle(token))
 
 
     } 
