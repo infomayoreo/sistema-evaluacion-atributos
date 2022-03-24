@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import { startLogout } from '../../../../redux/actions';
+import { paths } from "../../../../routers/routerPaths";
 import './Sidebar.scss';
 
 export const Sidebar = () => {
@@ -17,13 +18,16 @@ export const Sidebar = () => {
             
             <ul className="sidebar-menu__container">
                 <li className="group-item">
-                    <Link className="link" to='/admin'>Admin</Link>
+                    <Link className="link" to={paths.index}>Inicio</Link>
                 </li>
                 <li className="group-item">
-                    <Link className="link" to='/reuniones'>Reuniones</Link>
+                    <Link className="link" to={'/'+paths.admin_menu}>Admin</Link>
                 </li>
                 <li className="group-item">
-                    <Link className="link" to='/reportes'>Reportes</Link>
+                    <Link className="link" to={paths.evaluaciones_menu}>Evaluaciones</Link>
+                </li>
+                <li className="group-item">
+                    <Link className="link" to={paths.reportes_menu}>Reportes</Link>
                 </li>
                 <li className="group-item" style={{ cursor: "pointer" }}>
                     <div onClick={ handleLogout }>Logout</div> {/*Eliminar*/}
