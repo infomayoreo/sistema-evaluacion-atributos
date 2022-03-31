@@ -37,17 +37,16 @@ import {
 } from '../pages/dashboard/ReportsModule';
 
 
-export const AppRouter = (): JSX.Element => {
+export const AppRouter = ({setToken, token} : any): JSX.Element => {
 
 	const {googleToken} = useSelector( (state: any) => state.auth );
-
 	// checking avoid the redirect of the page when refresh manually the page
 	// or type the url directly
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [checking, setChecking] = useState(true);
 	
 	useEffect(() => {
-		console.log(googleToken)
+		// console.log(googleToken)
 		console.log('useEffect');
 		if (googleToken) {
 			setIsLoggedIn( true );

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 export const HomePage = (): JSX.Element => {
     return (
       <>
-        <div>HomePage</div>
-		<hr />
+        <h1>Dashboard</h1>
+		    <hr />
 
         <ul>
           <li>

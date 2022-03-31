@@ -1,6 +1,7 @@
 import { responseEncoding } from 'axios';
 import { ThunkDispatch } from 'redux-thunk';
 import { ReduxAction, User } from '../../interfaces';
+import { store } from '../store';
 import { types } from '../types';
 
 
@@ -88,18 +89,19 @@ export const startLoginGoogle =  (response: any) => {
     // const API = "127.0.0.1:3001/api/v1/google-login";
     return async(dispatch: ThunkDispatch<{}, {}, ReduxAction>) => { 
         // console.log(response)
+        console.log(response.credential)
         let cabeceras = new Headers();
 		cabeceras.append("google-id-token", response.credential)
-	    const sendToken = await fetch("http://localhost:3001/api/v1/google-login", {
+	    const sendToken = await fetch(`${import.meta.env.VITE_API}google-login`, {
 		method: "POST",
 		headers: cabeceras,
 		redirect: "follow",
 	                        })
     const datos = await sendToken.json();
-    console.log(datos)
+    // console.log(datos)
     const status = datos.appStatusCode
     const token = datos.data.token
-    console.log(token)
+    // console.log(token)
     
     if(status != 0) {
         console.log("Error de validacion")
